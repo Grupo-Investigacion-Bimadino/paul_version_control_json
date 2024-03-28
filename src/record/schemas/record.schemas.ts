@@ -1,38 +1,37 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mondoose';
-import { Prop, Prop } from '@nestjs/mongoose';
-import mongoose, { document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Document } from 'mongoose';
 
 @Schema({
     timestamps: true
 })
 
-export class Versions extends Document {
-@prop ()
-_id: string;
+export class Record extends Document {
+    @Prop()
+    _id: string;
 
-@Prop ()
-tittle: string;
+    @Prop()
+    tittle: string;
 
-@Prop ()
-body: string;
+    @Prop()
+    body: string;
 
-@Prop ({type: mongoose.Schema.Type.ObjectId, ref: 'user'})
+    @Prop({ type: mongoose.Types.ObjectId, ref: 'user' })
 
-@Prop ({ type: String, enum:['DRAFT','PUBLISHED', 'DELETE']})
-status:string;
+    @Prop({ type: String, enum: ['DRAFT', 'PUBLISHED', 'DELETE'] })
+    status: string;
 
-@Prop ()
-created_at: Date;
+    @Prop()
+    created_at: Date;
 
-@Prop()
-updated_at: Date;
+    @Prop()
+    updated_at: Date;
 
-@Prop ({ type: mongoose.SchemaTypes.Type.ObjectId}, ref:'Resource')
-Recources: string[]; 
+    @Prop({ type: mongoose.Types.ObjectId, ref: 'Resource' })
+    Recources: string[];
 
-@Prop()
-kerwords: string[];
+    @Prop()
+    kerwords: string[];
 
 }
 
-export const NarrativeSchema = SchemaFactory.createForClass(narrative);
+export const RecordSchema = SchemaFactory.createForClass(Record);
